@@ -22,3 +22,15 @@ after_success:
   - docker push jck9116/multi-nginx
   - docker push jck9116/multi-server
   - docker push jck9116/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ca-central-1"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-ca-central-1-649259202218"
+  bucket_path: "multidocker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
